@@ -32,7 +32,7 @@ The tests need L<Test::Files|http://search.cpan.org/search?query=Test%3A%3AFiles
 #_}
 
 
-sub new {
+sub new { #_{
 
   my $class = shift;
   my $opts  = shift;
@@ -48,16 +48,29 @@ sub new {
 
   return $self;
 
-}
+} #_}
 
-sub write_dot {
+sub write_dot { #_{
 
   my $self = shift;
   open my $out, '>', "$self->{file_base_name}.dot";
 
-  print $out "digraph D {\n";
+  print $out "digraph {\n";
 
   print $out "}\n";
+
+} #_}
+
+sub create {
+
+  my $self     = shift;
+  my $filetype = shift;
+
+  $self->write_dot();
+
+  my $rc = system ("dot $self->{file_base_name}.dot -T$filetype -o$self->{file_base_name}.$filetype");
+
+  die "rc = $rc" if $rc;
 
 }
 
