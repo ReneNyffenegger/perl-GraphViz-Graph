@@ -28,11 +28,25 @@ our $VERSION = '0.01';
 sub new {
 
   my $class = shift;
+  my $opts  = shift;
+
   my $self = {};
+
+  die 'missing file_base_name' unless $opts->{file_base_name};
+  $self -> {file_base_name} = delete $opts->{file_base_name};
+
+  die "Unrecognized opts" if keys %$opts;
 
   bless $self, $class;
 
   return $self;
+
+}
+
+sub write_dot {
+
+  my $self = shift;
+  open my $out, '>', $self->{file_base_name};
 
 }
 

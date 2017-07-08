@@ -2,4 +2,4 @@ Changes
 lib/GraphViz/Graph.pm
 Makefile.PL
 README
-t/00-load.t
+t/000-load.t
