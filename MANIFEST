@@ -1,5 +1,12 @@
 Changes
 lib/GraphViz/Graph.pm
+lib/GraphViz/Graph/Label.pm
 Makefile.PL
 README
 t/000-load.t
+t/001-new.t
+t/002-write_dot.t
+t/test-002.dot.expected
+t/003-create.t
+t/004-label-graph.t
+t/test-004.dot.expected

@@ -31,6 +31,7 @@ The tests need L<Test::Files|http://search.cpan.org/search?query=Test%3A%3AFiles
 =cut
 #_}
 
+use GraphViz::Graph::Label;
 
 sub new { #_{
 
@@ -45,8 +46,16 @@ sub new { #_{
   die "Unrecognized opts" if keys %$opts;
 
   bless $self, $class;
-
   return $self;
+
+} #_}
+
+sub label { #_{
+
+  my $self = shift;
+  my $opts = shift;
+
+  $self -> {label} = GraphViz::Graph::Label->new($opts);
 
 } #_}
 
@@ -57,11 +66,18 @@ sub write_dot { #_{
 
   print $out "digraph {\n";
 
+# Define the graph label end of your dot file,
+# otherwise subgraphs will inherit those properties.
+# https://stackoverflow.com/a/4716607/180275
+  if ($self->{label}) {
+     print $out $self->{label}->dot_text;
+  }
+
   print $out "}\n";
 
 } #_}
 
-sub create {
+sub create { #_{
 
   my $self     = shift;
   my $filetype = shift;
@@ -72,7 +88,7 @@ sub create {
 
   die "rc = $rc" if $rc;
 
-}
+} #_}
 
 
 'tq84'
