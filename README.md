@@ -1,2 +1,2 @@
 # perl-GraphViz-Graph
-Perl module Graphviz::Graph
+Perl module GraphViz::Graph
