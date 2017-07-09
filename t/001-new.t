@@ -2,14 +2,15 @@
 use warnings;
 use strict;
 
-use Test::More tests => 3;
+use Test::More tests => 4;
 use Test::Exception;
 
 use GraphViz::Graph;
 
-dies_ok { GraphViz::Graph->new } 'Expecting to die';
+dies_ok { GraphViz::Graph->new()  ; } 'Expecting to die';
+dies_ok { GraphViz::Graph->new({}); } 'Expecting to die';
 
-my $graph = GraphViz::Graph->new({file_base_name=>'test'});
+my $graph = GraphViz::Graph->new('FileNameBase');
 
 is(ref $graph, 'GraphViz::Graph', 'ref() of thing returned by new');
 

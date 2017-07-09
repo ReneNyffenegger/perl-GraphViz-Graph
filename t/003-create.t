@@ -7,7 +7,7 @@ use Test::More tests => 2;
 use GraphViz::Graph;
 
 my $file_base_name = 'test-003';
-my $graph = GraphViz::Graph->new({file_base_name => $file_base_name});
+my $graph = GraphViz::Graph->new($file_base_name);
 
 my $dot_file_name  = "$file_base_name.dot";
 my $png_file_name  = "$file_base_name.png";

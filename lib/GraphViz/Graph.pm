@@ -31,19 +31,34 @@ The tests need L<Test::Files|http://search.cpan.org/search?query=Test%3A%3AFiles
 =cut
 #_}
 
+use Carp;
 use GraphViz::Graph::Label;
+
+=head1 METHODS
+=cut
 
 sub new { #_{
 
-  my $class = shift;
-  my $opts  = shift;
+=head2 new
+    my $graph = GraphViz::Graph->new('FileNameBase');
 
-  my $self = {};
+Start a graph. C<'FileNameBase'> is the base name for the produced dot and png/pdf/svg… etc. output file.
+=cut
 
-  die 'missing file_base_name' unless $opts->{file_base_name};
-  $self -> {file_base_name} = delete $opts->{file_base_name};
+  my $class          = shift;
+  my $file_base_name = shift;
+  my $opts           = shift // {};
 
-  die "Unrecognized opts" if keys %$opts;
+  my $self           = {};
+
+  croak 'File base name must be passed' unless defined $file_base_name;
+  croak 'File base name must be sclar'  unless ref \$file_base_name eq 'SCALAR';
+
+  $self -> {file_base_name} = $file_base_name;
+
+# $opts->{file_base_name} = $file_base_name;
+
+  croak "Unrecognized opts " . join "/", keys %$opts if keys %$opts;
 
   bless $self, $class;
   return $self;

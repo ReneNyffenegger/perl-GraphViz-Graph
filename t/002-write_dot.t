@@ -9,7 +9,7 @@ use GraphViz::Graph;
 
 my $file_base_name = 'test-002';
 my $dot_file_name  = "$file_base_name.dot";
-my $graph = GraphViz::Graph->new({file_base_name => $file_base_name});
+my $graph = GraphViz::Graph->new($file_base_name);
 $graph->write_dot();
 
 ok(-e $dot_file_name);
