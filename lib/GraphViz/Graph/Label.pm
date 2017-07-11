@@ -1,5 +1,8 @@
 package GraphViz::Graph::Label;
 
+use warnings;
+use strict;
+
 use Carp;
 
 sub new { #_{

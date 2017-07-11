@@ -29,10 +29,13 @@ The tests need L<Test::Files|http://search.cpan.org/search?query=Test%3A%3AFiles
 
 =cut
 #_}
+#_{ use …
 
 use Carp;
 use GraphViz::Graph::Label;
+use GraphViz::Graph::Node;
 
+#_}
 #_{ Methods
 =head1 METHODS
 =cut
@@ -60,6 +63,8 @@ Start a graph. C<'FileNameBase'> is the base name for the produced dot and png/p
 
   croak "Unrecognized opts " . join "/", keys %$opts if keys %$opts;
 
+  $self->{nodes} = [];
+
   bless $self, $class;
   return $self;
 
@@ -67,10 +72,39 @@ Start a graph. C<'FileNameBase'> is the base name for the produced dot and png/p
 
 sub label { #_{
 
+=head2 label
+    GraphViz::Graph->label({text => 'Graph Title'}');
+    GraphViz::Graph->label({html => '<font point-size="20">Say <font face="Courier">Hello World</font></font>'}');
+
+Add a label to a graph. Most probably used as a title.
+=cut
+
   my $self = shift;
   my $opts = shift;
 
   $self -> {label} = GraphViz::Graph::Label->new($opts);
+
+} #_}
+
+sub node { #_{
+
+=head2 label
+    my $nd_foo = GraphViz::Graph->node();
+    # … later:
+    $nd_foo -> label({html=>"<b>Bold</b><i>Italic</i>"});
+
+Add a node to a graph
+=cut
+
+  my $self = shift;
+  my $opts = shift;
+
+
+  my $node = GraphViz::Graph::Node -> new($opts);
+
+  push @{$self->{nodes}}, $node;
+
+  return $node;
 
 } #_}
 
@@ -80,6 +114,10 @@ sub write_dot { #_{
   open my $out, '>', "$self->{file_base_name}.dot";
 
   print $out "digraph {\n";
+
+  for my $node (@{$self->{nodes}}) {
+    print $out $node -> dot_text();
+  }
 
 # Define the graph label end of your dot file,
 # otherwise subgraphs will inherit those properties.
