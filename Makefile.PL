@@ -16,7 +16,9 @@ WriteMakefile(
         'ExtUtils::MakeMaker' => 0,
     },
     BUILD_REQUIRES => {
-        'Test::Simple' => 0,
+        'Test::Exception'   => 0,
+        'Test::More'        => 0,
+        'Test::Simple'      => 0,
     },
     dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean => { FILES => 'GraphViz-Graph-*' },
