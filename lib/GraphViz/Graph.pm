@@ -1,4 +1,3 @@
-
 #_{ Encoding and name
 =encoding utf8
 =head1 NAME
@@ -34,6 +33,7 @@ The tests need L<Test::Files|http://search.cpan.org/search?query=Test%3A%3AFiles
 use Carp;
 use GraphViz::Graph::Label;
 
+#_{ Methods
 =head1 METHODS
 =cut
 
@@ -97,13 +97,18 @@ sub create { #_{
   my $self     = shift;
   my $filetype = shift;
 
+  croak "unspecified filetype" unless $filetype;
+
   $self->write_dot();
 
-  my $rc = system ("dot $self->{file_base_name}.dot -T$filetype -o$self->{file_base_name}.$filetype");
+  my $command = "dot $self->{file_base_name}.dot -T$filetype -o$self->{file_base_name}.$filetype";
 
-  die "rc = $rc" if $rc;
+  my $rc = system ($command);
+
+  croak "rc = $rc, command=$command" if $rc;
 
 } #_}
 
+#_}
 
 'tq84'
