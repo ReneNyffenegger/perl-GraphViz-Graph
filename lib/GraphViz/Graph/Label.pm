@@ -4,6 +4,10 @@ use warnings;
 use strict;
 
 use Carp;
+#
+#_{ Methods
+=head1 METHODS
+=cut
 
 sub new { #_{
 
@@ -32,25 +36,57 @@ sub new { #_{
   return $self;
 
 } #_}
+sub loc { #_{
 
+=head2 loc
+
+    my $label = $graph -> label(…);
+    $label->loc('t'); # put label to top of graph
+
+For I<graphs and clusters>, only C<"t"> (I<top>)and C<"b"> (I<bottom>, default) are allowed.
+
+Possible values for I<nodes> seem to be C<"t">, C<"b"> and C<"c"> (I<centered>, default). The value is only used when the height of the node is larger than the height of its label. 
+
+=cut
+
+  my $self = shift;
+  my $loc  = shift;
+
+  carp "$loc is not in c, b, t" unless grep { $_ eq $loc} qw(c b t);
+
+  $self->{loc} = $loc;
+
+  return $self;
+
+} #_}
 sub dot_text { #_{
 
   my $self = shift;
 
+  my $ret = '';
+
   if ($self->{type} eq 'text') {
 
-     return "
+     $ret = "
   label=\"$self->{text_or_html}\"
 ";
 
   }
   else {
-     return "
+     $ret = "
   label=<$self->{text_or_html}>
 ";
 
   }
+  if ($self->{loc}) {
+    $ret .= "  labelloc=$self->{loc}
+";
+  }
+
+  return $ret;
 
 } #_}
+
+#_}
 
 'tq84';

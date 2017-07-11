@@ -7,12 +7,16 @@ use GraphViz::Graph;
 use Test::More tests => 1;
 use Test::Files;
 
-my $file_base_name = 'test-004';
+my $file_base_name = 'test-007';
 my $dot_file_name  = "$file_base_name.dot";
 my $png_file_name  = "$file_base_name.png";
 my $graph = GraphViz::Graph->new($file_base_name);
 
-$graph->label({text=>'Test 004'});
+my $graph_label = $graph->label({text=>'Test 007 Label'});
+$graph_label->loc('t');
+
+$graph->node({text=>'Node one'});
+$graph->node({text=>'Node two'});
 
 $graph->create('png');
 
