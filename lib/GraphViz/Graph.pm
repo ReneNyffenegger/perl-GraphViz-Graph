@@ -214,7 +214,7 @@ This function is internally used by the constructur (C<new()>) of L<GraphViz::Gr
     return $node_or_port;
   }
 
-  croak "node_or_port neither Node nor string";
+  croak "Graph - node_or_port ($node_or_port) neither Node nor string";
 } #_}
 
 #_}
