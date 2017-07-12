@@ -5,6 +5,9 @@ use strict;
 
 use Carp;
 
+#_{ Version
+our $VERSION = $GraphViz::Graph::Version;
+#_}
 #_{ Methods
 #_{ POD
 =encoding utf8

@@ -7,6 +7,9 @@ use GraphViz::Graph;
 
 use Carp;
 
+#_{ Version
+our $VERSION = $GraphViz::Graph::Version;
+#_}
 #_{ Methods
 
 =head1 METHODS

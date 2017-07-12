@@ -6,6 +6,9 @@ use 5.10.0; # state
 use Carp;
 
 
+#_{ Version
+our $VERSION = $GraphViz::Graph::Version;
+#_}
 #_{ Methods
 #_{ POD
 
