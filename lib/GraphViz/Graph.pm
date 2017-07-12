@@ -1,8 +1,11 @@
 #_{ Encoding and name
 =encoding utf8
+
 =head1 NAME
-GraphViz::Graph - Object Oriented Interface to graphviz.
+
+GraphViz::Graph - Object Oriented interface to graphviz.
 =cut
+
 package GraphViz::Graph;
 
 use strict;
@@ -11,22 +14,30 @@ use utf8;
 #_}
 #_{ Version
 =head1 VERSION
+
 Version 0.01
+
 =cut
 
 our $VERSION = '0.01';
 #_}
 #_{ Synopsis
 =head1 SYNOPSIS
+
     use GraphViz::Graph;
-   
-=cut
-#_}
-#_{ Testing
-=head1 Testing
 
-The tests need L<Test::Files|http://search.cpan.org/search?query=Test%3A%3AFiles&mode=all>.
+    my $graph = GraphViz::Graph->new('filename-without-suffix');
 
+    # Create nodes:
+    my $nd_1 = $graph->node(…);
+    my $nd_2 = $graph->node(…);
+
+    # Connect nodes:
+    $graph->edge($nd_1, $nd_2);
+
+    # Create .dot file, run graphviz/dot to
+    # create filename-without-suffix.png:
+    $graph->create('png');
 =cut
 #_}
 #_{ use …
@@ -44,6 +55,7 @@ use GraphViz::Graph::Node;
 sub new { #_{
 
 =head2 new
+
     my $graph = GraphViz::Graph->new('FileNameBase');
 
 Start a graph. C<'FileNameBase'> is the base name for the produced dot and png/pdf/svg… etc. output file.
@@ -72,14 +84,16 @@ Start a graph. C<'FileNameBase'> is the base name for the produced dot and png/p
 
 } #_}
 sub label { #_{
-
+#_{ POD
 =head2 label
+
     GraphViz::Graph->label({text => 'Graph Title'}');
     GraphViz::Graph->label({html => '<font point-size="20">Say <font face="Courier">Hello World</font></font>'}');
 
 Add a label to a graph. Most probably used as a title.
-=cut
 
+=cut
+#_}
   my $self = shift;
   my $opts = shift;
 
@@ -89,11 +103,13 @@ Add a label to a graph. Most probably used as a title.
 sub node { #_{
  #_{
 =head2 node
+
     my $nd_foo = GraphViz::Graph->node();
     # … later:
     $nd_foo -> label({html=>"<b>Bold</b><i>Italic</i>"});
 
 Add a node to a graph
+
 =cut
  #_}
   my $self = shift;
@@ -111,7 +127,7 @@ sub edge { #_{
  #_{
 =head2 edge
 
-Add an edge to a graph
+Add an edge to a graph.
 
     my $nd_one   = $graph->node();
     my $nd_two   = $graph->node();
@@ -183,7 +199,7 @@ sub node_or_port_to_string_ { #_{
 #_{ POD
 =head2 node_or_port_to_string_
 
-This function is internally used by the constructur (C<new()>) of C<GraphViz::Graph::Edge>.
+This function is internally used by the constructur (C<new()>) of L<GraphViz::Graph::Edge>.
 
 =cut
 #_}
@@ -202,5 +218,26 @@ This function is internally used by the constructur (C<new()>) of C<GraphViz::Gr
 } #_}
 
 #_}
+#_{ POD: Copyright
 
+=head1 Copyright
+
+Copyright © 2017 René Nyffenegger, Switzerland. All rights reserved.
+
+This program is free software; you can redistribute it and/or modify it
+under the terms of the the Artistic License (2.0). You may obtain a
+copy of the full license at: L<http://www.perlfoundation.org/artistic_license_2_0>
+
+=cut
+
+#_}
+#_{ Testing
+
+=head1 Testing
+
+The tests need L<Test::Files|http://search.cpan.org/search?query=Test%3A%3AFiles&mode=all>.
+
+=cut
+
+#_}
 'tq84'

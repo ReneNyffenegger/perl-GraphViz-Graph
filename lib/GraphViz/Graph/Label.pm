@@ -6,12 +6,18 @@ use strict;
 use Carp;
 
 #_{ Methods
+#_{ POD
+=encoding utf8
+
 =head1 METHODS
+
 =cut
 
+ #_}
 sub new { #_{
  #_{ POD
 =head2 new
+
 =cut
  #_}
   my $class = shift;
@@ -65,6 +71,7 @@ Possible values for I<nodes> seem to be C<"t">, C<"b"> and C<"c"> (I<centered>, 
 sub dot_text { #_{
  #_{ POD
 =head2 dot_text
+
 =cut
  #_}
 

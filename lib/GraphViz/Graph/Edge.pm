@@ -15,6 +15,7 @@ use Carp;
 sub new { #_{
 #_{ POD
 =head2 new
+
 =cut
 #_}
 
@@ -28,9 +29,6 @@ sub new { #_{
   $self->{from} = GraphViz::Graph::node_or_port_to_string_($from);
   $self->{to  } = GraphViz::Graph::node_or_port_to_string_($to  );
 
-  
-
-
   bless $self, $class;
   return $self;
 
@@ -38,6 +36,11 @@ sub new { #_{
 sub dot_text {
 #_{ POD
 =head2 dot_text
+
+Returns the dot-text that represents the edge on which it was called.
+
+Called by L<GraphViz::Graph>'s C<write_dot()>.
+
 =cut
 #_}
 

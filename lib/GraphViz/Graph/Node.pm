@@ -5,11 +5,17 @@ use strict;
 use 5.10.0; # state
 use Carp;
 
+
 #_{ Methods
+#_{ POD
+
+=encoding utf8
 
 =head1 METHODS
+
 =cut
 
+#_}
 sub new { #_{
  #_{ POD
 =head2 new
@@ -50,6 +56,25 @@ sub label { #_{
 sub shape { #_{
  #_{ POD
 =head2 shape
+
+Sets the shape of node. Possible values can be, among others:
+
+=over 4
+
+=item * C<'none'>
+
+=item * C<'point'>
+
+=item * C<'rect'>
+
+=item * C<'square'>
+
+=item * C<'star'>
+
+=item * etc …
+
+=back
+
 =cut
  #_}
 
@@ -64,6 +89,11 @@ sub shape { #_{
 sub dot_text { #_{
  #_{ POD
 =head2 dot_text
+
+Returns the dot-text that represents the node on which it was called.
+
+Called by L<GraphViz::Graph>'s C<write_dot()>.
+
 =cut
  #_}
 
@@ -83,7 +113,7 @@ sub port { #_{
  #_{ POD
 =head2 port
 
-C<$node->port()> is needed to connect from or to ports with edges.
+C<< $node->port() >> is needed to connect from or to ports with edges.
 
     my $nd_one   = $graph->node();
     my $nd_two   = $graph->node();
@@ -94,8 +124,8 @@ C<$node->port()> is needed to connect from or to ports with edges.
 
     $graph->edge($nd_one, $nd_two->port('port_f')):
 
- $nd -> 
 =cut
+
  #_}
  
  my $self    = shift;
