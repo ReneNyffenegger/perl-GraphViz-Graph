@@ -1,9 +1,7 @@
 Changes
-GraphViz-Graph-0.01.tar.gz
 ignore.txt
 lib/GraphViz/Graph.pm
 lib/GraphViz/Graph/Edge.pm
-lib/GraphViz/Graph/HTML/table.pm
 lib/GraphViz/Graph/Label.pm
 lib/GraphViz/Graph/Node.pm
 Makefile.PL

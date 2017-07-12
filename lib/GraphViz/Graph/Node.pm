@@ -1,13 +1,12 @@
 package GraphViz::Graph::Node;
-
+#_{ use
 use warnings;
 use strict;
 use 5.10.0; # state
 use Carp;
-
-
+#_}
 #_{ Version
-our $VERSION = $GraphViz::Graph::Version;
+our $VERSION = $GraphViz::Graph::VERSION;
 #_}
 #_{ Methods
 #_{ POD

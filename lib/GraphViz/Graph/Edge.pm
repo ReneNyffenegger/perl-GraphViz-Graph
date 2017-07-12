@@ -7,7 +7,7 @@ use Carp;
 use GraphViz::Graph;
 #_}
 #_{ Version
-our $VERSION = $GraphViz::Graph::Version;
+our $VERSION = $GraphViz::Graph::VERSION;
 #_}
 #_{ Methods
 #_{ POD

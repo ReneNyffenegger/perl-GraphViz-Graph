@@ -1,12 +1,12 @@
 package GraphViz::Graph::Label;
-
+#_{ use
 use warnings;
 use strict;
 
 use Carp;
-
+#_}
 #_{ Version
-our $VERSION = $GraphViz::Graph::Version;
+our $VERSION = $GraphViz::Graph::VERSION;
 #_}
 #_{ Methods
 #_{ POD
