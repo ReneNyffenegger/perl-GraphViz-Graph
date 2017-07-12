@@ -4,13 +4,16 @@ use warnings;
 use strict;
 
 use Carp;
-#
+
 #_{ Methods
 =head1 METHODS
 =cut
 
 sub new { #_{
-
+ #_{ POD
+=head2 new
+=cut
+ #_}
   my $class = shift;
   my $opts  = shift;
   my $self = {};
@@ -37,7 +40,7 @@ sub new { #_{
 
 } #_}
 sub loc { #_{
-
+ #_{ POD
 =head2 loc
 
     my $label = $graph -> label(…);
@@ -48,7 +51,7 @@ For I<graphs and clusters>, only C<"t"> (I<top>)and C<"b"> (I<bottom>, default) 
 Possible values for I<nodes> seem to be C<"t">, C<"b"> and C<"c"> (I<centered>, default). The value is only used when the height of the node is larger than the height of its label. 
 
 =cut
-
+ #_}
   my $self = shift;
   my $loc  = shift;
 
@@ -60,6 +63,10 @@ Possible values for I<nodes> seem to be C<"t">, C<"b"> and C<"c"> (I<centered>, 
 
 } #_}
 sub dot_text { #_{
+ #_{ POD
+=head2 dot_text
+=cut
+ #_}
 
   my $self = shift;
 

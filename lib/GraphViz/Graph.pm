@@ -32,6 +32,7 @@ The tests need L<Test::Files|http://search.cpan.org/search?query=Test%3A%3AFiles
 #_{ use …
 
 use Carp;
+use GraphViz::Graph::Edge;
 use GraphViz::Graph::Label;
 use GraphViz::Graph::Node;
 
@@ -64,12 +65,12 @@ Start a graph. C<'FileNameBase'> is the base name for the produced dot and png/p
   croak "Unrecognized opts " . join "/", keys %$opts if keys %$opts;
 
   $self->{nodes} = [];
+  $self->{edges} = [];
 
   bless $self, $class;
   return $self;
 
 } #_}
-
 sub label { #_{
 
 =head2 label
@@ -85,17 +86,16 @@ Add a label to a graph. Most probably used as a title.
   $self -> {label} = GraphViz::Graph::Label->new($opts);
 
 } #_}
-
 sub node { #_{
-
-=head2 label
+ #_{
+=head2 node
     my $nd_foo = GraphViz::Graph->node();
     # … later:
     $nd_foo -> label({html=>"<b>Bold</b><i>Italic</i>"});
 
 Add a node to a graph
 =cut
-
+ #_}
   my $self = shift;
   my $opts = shift;
 
@@ -107,7 +107,50 @@ Add a node to a graph
   return $node;
 
 } #_}
+sub edge { #_{
+ #_{
+=head2 edge
 
+Add an edge to a graph
+
+    my $nd_one   = $graph->node();
+    my $nd_two   = $graph->node();
+    my $nd_three = $graph->node();
+
+    $nd_one->label({html=>"<table>
+      <tr><td>a</td><td>b</td></tr>
+      <tr><td>c</td><td>d</td></tr>
+      <tr><td>e</td><td>f</td></tr>
+    </table>"});
+
+    $nd_two->label({html=>"<table>
+      <tr><td              >d</td><td>e</td></tr>
+      <tr><td port='port_f'>f</td><td>g</td></tr>
+      <tr><td              >h</td><td>i</td></tr>
+    </table>"});
+
+    $nd_three->label({html=>"<table>
+      <tr><td>j</td><td>k</td></tr>
+      <tr><td>l</td><td>m</td></tr>
+      <tr><td>n</td><td>o</td></tr>
+    </table>"});
+
+    $graph->edge($nd_one, $nd_two->port('port_f')):
+    $graph->edge($nd_two, $nd_three);
+
+=cut
+ #_}
+  my $self = shift;
+  my $from = shift;
+  my $to   = shift;
+
+  my $edge = GraphViz::Graph::Edge -> new($from, $to);
+
+  push @{$self->{edges}}, $edge;
+
+  return $edge;
+
+} #_}
 sub write_dot { #_{
 
   my $self = shift;
@@ -117,6 +160,9 @@ sub write_dot { #_{
 
   for my $node (@{$self->{nodes}}) {
     print $out $node -> dot_text();
+  }
+  for my $edge (@{$self->{edges}}) {
+    print $out $edge -> dot_text();
   }
 
 # Define the graph label end of your dot file,
@@ -129,7 +175,6 @@ sub write_dot { #_{
   print $out "}\n";
 
 } #_}
-
 sub create { #_{
 
   my $self     = shift;
@@ -145,6 +190,27 @@ sub create { #_{
 
   croak "rc = $rc, command=$command" if $rc;
 
+} #_}
+sub node_or_port_to_string_ { #_{
+#_{ POD
+=head2 node_or_port_to_string_
+
+This function is internally used by the constructur (C<new()>) of C<GraphViz::Graph::Edge>.
+
+=cut
+#_}
+
+  my $node_or_port = shift;
+
+  if (ref $node_or_port eq 'GraphViz::Graph::Node') {
+    return $node_or_port->{id};
+  }
+  unless (ref $node_or_port) {
+    # String ???
+    return $node_or_port;
+  }
+
+  croak "node_or_port neither Node nor string";
 } #_}
 
 #_}

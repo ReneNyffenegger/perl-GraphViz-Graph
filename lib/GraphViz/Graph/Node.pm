@@ -5,9 +5,16 @@ use strict;
 use 5.10.0; # state
 use Carp;
 
+#_{ Methods
+
+=head1 METHODS
+=cut
 
 sub new { #_{
-
+ #_{ POD
+=head2 new
+=cut
+ #_}
   my $class = shift;
   my $opts  = shift;
   my $self = {};
@@ -28,8 +35,11 @@ sub new { #_{
   return $self;
 
 } #_}
-
 sub label { #_{
+ #_{ POD
+=head2 label
+=cut
+ #_}
 
   my $self = shift;
   my $opts = shift;
@@ -37,8 +47,11 @@ sub label { #_{
   $self->{label} = GraphViz::Graph::Label->new($opts);
 
 } #_}
-
 sub shape { #_{
+ #_{ POD
+=head2 shape
+=cut
+ #_}
 
   my $self       = shift;
   my $shape_text = shift; # none, point, rect, square, star etc // TODO: record
@@ -48,8 +61,11 @@ sub shape { #_{
   return $self;
 
 } #_}
-
 sub dot_text { #_{
+ #_{ POD
+=head2 dot_text
+=cut
+ #_}
 
   my $self = shift;
 
@@ -63,5 +79,19 @@ sub dot_text { #_{
   return $ret;
 
 } #_}
+sub port { #_{
+ #_{ POD
+=head2 port
+=cut
+ #_}
+ 
+ my $self    = shift;
+ my $port_id = shift;
+
+ return $self->{id} . ":$port_id";
+
+} #_}
+
+#_}
 
 'tq84';
