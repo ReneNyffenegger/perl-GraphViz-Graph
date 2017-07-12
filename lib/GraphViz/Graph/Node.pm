@@ -82,6 +82,19 @@ sub dot_text { #_{
 sub port { #_{
  #_{ POD
 =head2 port
+
+C<$node->port()> is needed to connect from or to ports with edges.
+
+    my $nd_one   = $graph->node();
+    my $nd_two   = $graph->node();
+
+    $nd_two->label({html=>"<table>
+      <tr><td port='port_f'>f</td><td>g</td></tr>
+    </table>"});
+
+    $graph->edge($nd_one, $nd_two->port('port_f')):
+
+ $nd -> 
 =cut
  #_}
  

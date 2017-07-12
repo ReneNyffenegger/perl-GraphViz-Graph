@@ -117,22 +117,10 @@ Add an edge to a graph
     my $nd_two   = $graph->node();
     my $nd_three = $graph->node();
 
-    $nd_one->label({html=>"<table>
-      <tr><td>a</td><td>b</td></tr>
-      <tr><td>c</td><td>d</td></tr>
-      <tr><td>e</td><td>f</td></tr>
-    </table>"});
+    $nd_one->label({html=>"…"});
 
     $nd_two->label({html=>"<table>
-      <tr><td              >d</td><td>e</td></tr>
       <tr><td port='port_f'>f</td><td>g</td></tr>
-      <tr><td              >h</td><td>i</td></tr>
-    </table>"});
-
-    $nd_three->label({html=>"<table>
-      <tr><td>j</td><td>k</td></tr>
-      <tr><td>l</td><td>m</td></tr>
-      <tr><td>n</td><td>o</td></tr>
     </table>"});
 
     $graph->edge($nd_one, $nd_two->port('port_f')):
