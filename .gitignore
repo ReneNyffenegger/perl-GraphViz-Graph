@@ -5,4 +5,5 @@ Makefile
 blib
 pm_to_blib
 GraphViz-Graph-*.tar.gz
+MANIFEST.bak
 www.graphviz.org
