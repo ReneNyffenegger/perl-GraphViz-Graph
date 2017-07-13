@@ -58,7 +58,8 @@ sub new { #_{
 
     my $graph = GraphViz::Graph->new('FileNameBase');
 
-Start a graph. C<'FileNameBase'> is the base name for the produced dot and png/pdf/svg… etc. output file.
+Start a graph. C<'FileNameBase'> is the base name for the produced dot and png/pdf/svg… etc. output file. (See L</create>).
+
 =cut
 
   my $class          = shift;
@@ -190,6 +191,23 @@ sub write_dot { #_{
 } #_}
 sub create { #_{
 
+#_{ POD
+=head2 create
+
+    my $graph = GraphViz::Graph->new('my_file');
+
+    # Do stuff...
+    $graph->node(…);
+  
+    # Finally, create the graphviz output:
+    # The call to create produces (as per constructor)
+    #   - my_file.dot
+    #   - my_file.pdf
+    $ graph->create('pdf');
+
+
+=cut
+#_}
   my $self     = shift;
   my $filetype = shift;
 
