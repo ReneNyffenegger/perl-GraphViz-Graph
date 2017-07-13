@@ -17,6 +17,7 @@ WriteMakefile(
     },
     BUILD_REQUIRES => {
         'Test::Exception'   => 0,
+        'Test::Files'       => 0,
         'Test::More'        => 0,
         'Test::Simple'      => 0,
     },
