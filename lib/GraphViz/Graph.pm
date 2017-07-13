@@ -77,8 +77,9 @@ Start a graph. C<'FileNameBase'> is the base name for the produced dot and png/p
 
   croak "Unrecognized opts " . join "/", keys %$opts if keys %$opts;
 
-  $self->{nodes} = [];
-  $self->{edges} = [];
+  $self->{nodes     } = [];
+  $self->{edges     } = [];
+  $self->{same_ranks} = [];
 
   bless $self, $class;
   return $self;
@@ -165,6 +166,29 @@ Add an edge to a graph.
   return $edge;
 
 } #_}
+sub same_rank { #_{
+#_{ POD
+=head2 same_rank
+
+    $graph->same_rank($node_one, $node_two);
+    $graph->same_rank($node_one, $node_two, $node_three, …);
+
+Put two or more L<nodes|GraphViz::Graph::Node> on the same rank.
+
+=cut
+
+  my $self  = shift;
+  my $nodes = [];
+
+  for my $node (@_) { #_{
+    croak "Graph - same_rank: Argument $node should be a GraphViz::Graph::Node" unless ref $node eq 'GraphViz::Graph::Node';
+    push @$nodes, $node;
+  } #_}
+
+  push @{$self->{same_ranks}}, $nodes;
+
+#_}
+} #_}
 sub write_dot { #_{
 
   my $self = shift;
@@ -177,6 +201,16 @@ sub write_dot { #_{
   }
   for my $edge (@{$self->{edges}}) {
     print $out $edge -> dot_text();
+  }
+  for my $nodes (@{$self->{same_ranks}}) {
+
+    print $out "  {rank=same;";
+
+    for my $node (@$nodes) {
+      print $out " $node->{id}";
+    }
+    print $out "}\n";
+
   }
 
 # Define the graph label end of your dot file,
