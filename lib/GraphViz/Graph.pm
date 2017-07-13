@@ -87,10 +87,19 @@ sub label { #_{
 #_{ POD
 =head2 label
 
-    GraphViz::Graph->label({text => 'Graph Title'}');
-    GraphViz::Graph->label({html => '<font point-size="20">Say <font face="Courier">Hello World</font></font>'}');
+    # Add text label:
+    $graph->label({text => 'Graph Title'}');
 
-Add a label to a graph. Most probably used as a title.
+    # Add html label:
+    $graph->label({html => '<font point-size="20">Say <font face="Courier">Hello World</font></font>'}');
+
+    # Position label:
+    my $graph_lbl = $graph->label(…);
+    $graph_lbl -> loc('t'); # t = top
+
+Add a label to a graph. Note, a graph can only have one label. This label is most probably used as a title.
+
+For positioning the label, see L<GraphViz::Graph::Label/loc>.
 
 =cut
 #_}
