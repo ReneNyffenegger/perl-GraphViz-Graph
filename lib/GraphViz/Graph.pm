@@ -119,15 +119,14 @@ sub node { #_{
     # … later:
     $nd_foo -> label({html=>"<b>Bold</b><i>Italic</i>"});
 
-Add a node to a graph
+Add a node to a graph. The returned object is a L<GraphViz::Graph::Node>.
 
 =cut
  #_}
   my $self = shift;
-  my $opts = shift;
+# my $opts = shift;
 
-
-  my $node = GraphViz::Graph::Node -> new($opts);
+  my $node = GraphViz::Graph::Node -> new();
 
   push @{$self->{nodes}}, $node;
 
@@ -181,7 +180,7 @@ Put two or more L<nodes|GraphViz::Graph::Node> on the same rank.
   my $nodes = [];
 
   for my $node (@_) { #_{
-    croak "Graph - same_rank: Argument $node should be a GraphViz::Graph::Node" unless ref $node eq 'GraphViz::Graph::Node';
+    croak "Graph - same_rank: Argument $node should be a GraphViz::Graph::Node" unless $node->isa('GraphViz::Graph::Node');
     push @$nodes, $node;
   } #_}
 
@@ -267,7 +266,7 @@ This function is internally used by the constructur (C<new()>) of L<GraphViz::Gr
 
   my $node_or_port = shift;
 
-  if (ref $node_or_port eq 'GraphViz::Graph::Node') {
+  if ($node_or_port->isa('GraphViz::Graph::Node')) {
     return $node_or_port->{id};
   }
   unless (ref $node_or_port) {

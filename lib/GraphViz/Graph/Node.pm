@@ -24,7 +24,7 @@ sub new { #_{
 =cut
  #_}
   my $class = shift;
-  my $opts  = shift;
+# my $opts  = shift;
   my $self = {};
 
 
