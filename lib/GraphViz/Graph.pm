@@ -300,4 +300,9 @@ The tests need L<Test::Files|http://search.cpan.org/search?query=Test%3A%3AFiles
 =cut
 
 #_}
+#_{ Source Code
+
+The source code is on L<github|https://github.com/ReneNyffenegger/perl-GraphViz-Graph>
+
+#_}
 'tq84'
