@@ -1,5 +1,4 @@
 Changes
-GraphViz-Graph-0.03.tar.gz
 ignore.txt
 lib/GraphViz/Graph.pm
 lib/GraphViz/Graph/Edge.pm
