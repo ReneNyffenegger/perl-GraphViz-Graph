@@ -301,8 +301,6 @@ copy of the full license at: L<http://www.perlfoundation.org/artistic_license_2_
 
 The tests need L<Test::Files|http://search.cpan.org/search?query=Test%3A%3AFiles&mode=all>.
 
-Since C<GraphViz::Graph> needs C<dot>, the tests are skipped if 
-
 =cut
 
 #_}
