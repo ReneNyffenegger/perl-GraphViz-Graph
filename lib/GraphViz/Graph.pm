@@ -20,7 +20,7 @@ Version 0.03
 
 =cut
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 #_}
 #_{ Synopsis
 =head1 SYNOPSIS
