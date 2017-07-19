@@ -4,6 +4,7 @@
 =head1 NAME
 
 GraphViz::Graph - Object Oriented interface to graphviz.
+
 =cut
 
 package GraphViz::Graph;
@@ -38,6 +39,9 @@ our $VERSION = '0.03';
     # Create .dot file, run graphviz/dot to
     # create filename-without-suffix.png:
     $graph->create('png');
+
+Note: C<GraphViz::Graph> needs C<dot> somewhere in C<$PATH>.
+
 =cut
 #_}
 #_{ use …
@@ -297,12 +301,19 @@ copy of the full license at: L<http://www.perlfoundation.org/artistic_license_2_
 
 The tests need L<Test::Files|http://search.cpan.org/search?query=Test%3A%3AFiles&mode=all>.
 
+Since C<GraphViz::Graph> needs C<dot>, the tests are skipped if 
+
 =cut
 
 #_}
 #_{ Source Code
 
+=head1 Source Code
+
 The source code is on L<github|https://github.com/ReneNyffenegger/perl-GraphViz-Graph>
 
+=cut
+
 #_}
+
 'tq84'

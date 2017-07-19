@@ -12,3 +12,6 @@
        Method same_rank() in GraphViz::Graph
 
        Allow for subclassing Graph.pm and Node.pm
+
+       Check if dot is installed in Makefile.pl
+       sub is_dot_installed() {...}
