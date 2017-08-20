@@ -16,7 +16,7 @@ use utf8;
 #_{ Version
 =head1 VERSION
 
-Version 0.03
+Version 0.04
 
 =cut
 
@@ -103,7 +103,7 @@ sub label { #_{
     my $graph_lbl = $graph->label(…);
     $graph_lbl -> loc('t'); # t = top
 
-Add a label to a graph. Note, a graph can only have one label. This label is most probably used as a title.
+Add a L<label|GraphViz::Graph::Label> to a graph. Note, a graph can only have one label. This label is most probably used as a title.
 
 For positioning the label, see L<GraphViz::Graph::Label/loc>.
 
@@ -123,7 +123,7 @@ sub node { #_{
     # … later:
     $nd_foo -> label({html=>"<b>Bold</b><i>Italic</i>"});
 
-Add a node to a graph. The returned object is a L<GraphViz::Graph::Node>.
+Add a L<node|GraphViz::Graph::Node> to a graph and return it.
 
 =cut
  #_}
@@ -141,8 +141,6 @@ sub edge { #_{
  #_{
 =head2 edge
 
-Add an edge to a graph.
-
     my $nd_one   = $graph->node();
     my $nd_two   = $graph->node();
     my $nd_three = $graph->node();
@@ -155,6 +153,8 @@ Add an edge to a graph.
 
     $graph->edge($nd_one, $nd_two->port('port_f')):
     $graph->edge($nd_two, $nd_three);
+
+Add an L<edge|GraphViz::Graph::Edge> to a graph and return it.
 
 =cut
  #_}
@@ -193,6 +193,17 @@ Put two or more L<nodes|GraphViz::Graph::Node> on the same rank.
 #_}
 } #_}
 sub write_dot { #_{
+#_{ POD
+=head2 write_dot
+
+    $graph->write_dot();
+
+Creates a C<.dot> file that can be given to the C<dot> executable.
+
+The name of the dot file is determined by first parameter when the C<$graph> object was created with L</new>.
+
+=cut
+#_}
 
   my $self = shift;
   open my $out, '>', "$self->{file_base_name}.dot";
@@ -242,6 +253,9 @@ sub create { #_{
     #   - my_file.pdf
     $ graph->create('pdf');
 
+
+Calls L</write_dot> and then executes the C<dot> executable. The parameter defines the format of
+the generated output file (pdf, png, gif...).
 
 =cut
 #_}
@@ -299,7 +313,7 @@ copy of the full license at: L<http://www.perlfoundation.org/artistic_license_2_
 
 =head1 Testing
 
-The tests need L<Test::Files|http://search.cpan.org/search?query=Test%3A%3AFiles&mode=all>.
+The tests need L<Test::Files>.
 
 =cut
 
@@ -308,7 +322,7 @@ The tests need L<Test::Files|http://search.cpan.org/search?query=Test%3A%3AFiles
 
 =head1 Source Code
 
-The source code is on L<github|https://github.com/ReneNyffenegger/perl-GraphViz-Graph>
+The source code is on L<github|https://github.com/ReneNyffenegger/perl-GraphViz-Graph>. Meaningful pull requests are welcome.
 
 =cut
 

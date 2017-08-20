@@ -17,3 +17,7 @@
        sub is_dot_installed() {...}
 
  0.04  2017-07-19 -
+
+       Small changes in the POD.
+
+
