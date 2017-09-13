@@ -206,7 +206,7 @@ The name of the dot file is determined by first parameter when the C<$graph> obj
 #_}
 
   my $self = shift;
-  open my $out, '>', "$self->{file_base_name}.dot";
+  open my $out, '>', "$self->{file_base_name}.dot" or croak "Could not open $self->{file_base_name}.dot";
 
   print $out "digraph {\n";
 
@@ -235,6 +235,7 @@ The name of the dot file is determined by first parameter when the C<$graph> obj
   }
 
   print $out "}\n";
+  close $out;
 
 } #_}
 sub create { #_{

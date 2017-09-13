@@ -23,4 +23,8 @@
        Makefile.PL
          Change BUILD_REQUIRES -> TEST_REQUIRES
 
+       croak() if .dot file cnannot be opened.
+
+       close() .dot file after writing.
+
 
