@@ -40,7 +40,7 @@ WriteMakefile(
     CONFIGURE_REQUIRES => {
         'ExtUtils::MakeMaker' => 0,
     },
-    BUILD_REQUIRES => {
+    TEST_REQUIRES => {
         'Test::Exception'   => 0,
         'Test::Files'       => 0,
         'Test::More'        => 0,

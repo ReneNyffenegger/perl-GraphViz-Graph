@@ -20,4 +20,7 @@
 
        Small changes in the POD.
 
+       Makefile.PL
+         Change BUILD_REQUIRES -> TEST_REQUIRES
+
 
