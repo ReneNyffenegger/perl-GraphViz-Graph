@@ -19,6 +19,17 @@ sub new { #_{
 #_{ POD
 =head2 new
 
+    my $node_from = GraphViz::Graph::Node->new(…);
+    my $node_to   = GraphViz::Graph::Node->new(…);
+
+    my $edge = GraphViz::Graph::Edge->new($node_from, $node_to);
+
+Creates an edge between two nodes.
+
+The user of L<< GraphViz::Graph >> should not use this method but rather
+call L<< $graph->edge($node_from, $node_to)|GraphViz::Graph/edge >> instead.
+
+
 =cut
 #_}
 
@@ -34,6 +45,25 @@ sub new { #_{
 
   bless $self, $class;
   return $self;
+
+} #_}
+sub label { #_{
+
+#_{ POD
+=head2 arrow_end
+
+    $edge->label('some text');
+
+Sets the L<< label|GraphViz::Graph::Label >> of an edge.
+
+TODO: L<Even more arrow shapes|http://www.graphviz.org/doc/info/arrows.html>
+
+=cut
+#_}
+
+  my $self = shift;
+  my $opts = shift;
+  $self->{label} = GraphViz::Graph::Label->new($opts);
 
 } #_}
 sub arrow_end { #_{
@@ -98,6 +128,7 @@ Called by L<GraphViz::Graph>'s C<write_dot()>.
   push @attributes, "dir=both"              if $arrow_tail ;#or $arrow_tail;
   push @attributes, "arrowhead=$arrow_head" if $arrow_head;
   push @attributes, "arrowtail=$arrow_tail" if $arrow_tail;
+  push @attributes, $self->{label}->dot_text() if $self->{label};
 
   my $attributes=join ' ', @attributes;
   $attributes = " [$attributes]" if $attributes;

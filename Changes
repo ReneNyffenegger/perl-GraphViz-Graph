@@ -27,4 +27,6 @@
 
        close() .dot file after writing.
 
+       Add method label() to Edge.
+
 

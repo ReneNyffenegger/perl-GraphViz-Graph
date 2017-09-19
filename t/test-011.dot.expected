@@ -1,0 +1,26 @@
+digraph {
+  nd_0001 [
+    shape=none
+    
+  label="A"
+  ];
+
+  nd_0002 [
+    shape=none
+    
+  label="B"
+  ];
+
+  nd_0003 [
+    shape=none
+    
+  label="C"
+  ];
+
+nd_0001 -> nd_0002 [
+  label="A -> B"
+];
+nd_0001 -> nd_0003 [
+  label=<<font point-size="25" color="#ff7700"><b>A</b></font> -&gt; <i><font color="#0066ff">B</font></i>>
+];
+}
