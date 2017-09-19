@@ -202,11 +202,13 @@ Creates a C<.dot> file that can be given to the C<dot> executable.
 
 The name of the dot file is determined by first parameter when the C<$graph> object was created with L</new>.
 
+Currently, it is assumed that all L<< labels|GraphViz::Graph::Label >> were written using utf8.
+
 =cut
 #_}
 
   my $self = shift;
-  open my $out, '>', "$self->{file_base_name}.dot" or croak "Could not open $self->{file_base_name}.dot";
+  open my $out, '>:encoding(utf8)', "$self->{file_base_name}.dot" or croak "Could not open $self->{file_base_name}.dot";
 
   print $out "digraph {\n";
 

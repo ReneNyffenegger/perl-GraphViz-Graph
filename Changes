@@ -29,4 +29,6 @@
 
        Add method label() to Edge.
 
+       Use utf8 encoding when writing the dot file.
+
 

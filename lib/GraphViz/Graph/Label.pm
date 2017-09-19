@@ -21,6 +21,22 @@ sub new { #_{
  #_{ POD
 =head2 new
 
+
+    my $label_text = GraphViz::Graph::Label->new({
+       text => 'foo bar baz'
+    });
+
+    my $label_html = GraphViz::Graph::Label->new({
+       html => 'foo <b>bar</b> <i>baz</i>'
+    });
+
+Creates a text or html label, depending on the option passed in the argument. The text is assumed to be in utf8.
+
+This method should not be used by the user of L<< GraphViz::Graph >>, rather, she should use
+L<< $edge->label(…)|GraphViz::Graph::Edge/label >>, 
+L<< $node->label(…)|GraphViz::Graph::Node/label >> or
+L<< $graph->label(…)|GraphViz::Graph/label >>.
+
 =cut
  #_}
   my $class = shift;
