@@ -9,9 +9,18 @@ GraphViz::Graph - Object Oriented interface to graphviz.
 
 package GraphViz::Graph;
 
+#_}
+#_{ use …
 use strict;
 use warnings;
 use utf8;
+
+use Carp;
+use GraphViz::Graph::Edge;
+use GraphViz::Graph::Label;
+use GraphViz::Graph::Node;
+use GraphViz::Graph::Object;
+
 #_}
 #_{ Version
 =head1 VERSION
@@ -21,6 +30,7 @@ Version 0.04
 =cut
 
 our $VERSION = 0.04;
+our @ISA = qw(GraphViz::Graph::Object);
 #_}
 #_{ Synopsis
 =head1 SYNOPSIS
@@ -44,14 +54,6 @@ Note: C<GraphViz::Graph> needs C<dot> somewhere in C<$PATH>.
 
 =cut
 #_}
-#_{ use …
-
-use Carp;
-use GraphViz::Graph::Edge;
-use GraphViz::Graph::Label;
-use GraphViz::Graph::Node;
-
-#_}
 #_{ Methods
 =head1 METHODS
 =cut
@@ -70,10 +72,11 @@ Start a graph. C<'FileNameBase'> is the base name for the produced dot and png/p
   my $file_base_name = shift;
   my $opts           = shift // {};
 
-  my $self           = {};
+  my $self = $class->SUPER::new();
+# my $self           = {};
 
   croak 'File base name must be passed' unless defined $file_base_name;
-  croak 'File base name must be sclar'  unless ref \$file_base_name eq 'SCALAR';
+  croak 'File base name must be scalar' unless ref \$file_base_name eq 'SCALAR';
 
   $self -> {file_base_name} = $file_base_name;
 
@@ -85,7 +88,7 @@ Start a graph. C<'FileNameBase'> is the base name for the produced dot and png/p
   $self->{edges     } = [];
   $self->{same_ranks} = [];
 
-  bless $self, $class;
+# bless $self, $class;
   return $self;
 
 } #_}

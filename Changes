@@ -31,4 +31,6 @@
 
        Use utf8 encoding when writing the dot file.
 
+       Derive Node, Edge and Graph from Object.
+
 

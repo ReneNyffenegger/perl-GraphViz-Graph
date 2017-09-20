@@ -5,6 +5,9 @@ use strict;
 
 use Carp;
 use GraphViz::Graph;
+use GraphViz::Graph::Object;
+
+our @ISA=qw(GraphViz::Graph::Object);
 #_}
 #_{ Version
 our $VERSION = 0.04;
@@ -37,13 +40,15 @@ call L<< $graph->edge($node_from, $node_to)|GraphViz::Graph/edge >> instead.
   my $from  = shift;
   my $to    = shift;
 
+  my $self = $class->SUPER::new();
+
 # my $opts  = shift;
-  my $self = {};
+# my $self = {};
 
   $self->{from} = GraphViz::Graph::node_or_port_to_string_($from);
   $self->{to  } = GraphViz::Graph::node_or_port_to_string_($to  );
 
-  bless $self, $class;
+# bless $self, $class;
   return $self;
 
 } #_}
@@ -133,7 +138,12 @@ Called by L<GraphViz::Graph>'s C<write_dot()>.
   my $attributes=join ' ', @attributes;
   $attributes = " [$attributes]" if $attributes;
 
-  my $ret = "$self->{from} -> $self->{to}$attributes;\n";
+  my $todo_attributes = $self->dot_text_attributes();
+# print $todo_attributes, "\n";
+
+  $todo_attributes = " [$todo_attributes]" if $todo_attributes;
+
+  my $ret = "$self->{from} -> $self->{to}$attributes$todo_attributes;\n";
 
   return $ret;
 } #_}

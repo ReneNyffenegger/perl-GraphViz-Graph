@@ -1,8 +1,12 @@
 use strict;
 use warnings;
 
-use Test::Simple tests => 1;
+use Test::More tests => 5;
 
 use GraphViz::Graph;
 
-ok(1, 'Module could be loaded');
+use_ok('GraphViz::Graph');
+use_ok('GraphViz::Graph::Object');
+use_ok('GraphViz::Graph::Node');
+use_ok('GraphViz::Graph::Edge');
+use_ok('GraphViz::Graph::Label');

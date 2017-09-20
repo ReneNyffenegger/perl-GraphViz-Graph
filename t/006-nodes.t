@@ -4,7 +4,7 @@ use strict;
 
 use GraphViz::Graph;
 
-use Test::More tests => 1;
+use Test::More tests => 3;
 use Test::Files;
 use Test::Exception;
 
@@ -19,8 +19,12 @@ my $nd_1 = $graph->node();
 my $nd_2 = $graph->node();
 my $nd_3 = $graph->node();
 
+isa_ok($nd_1, 'GraphViz::Graph::Node');
+isa_ok($nd_1, 'GraphViz::Graph::Object');
+
 $nd_1->label({text=>'Text label'});
 $nd_2->label({html=>'<font point-size="45"><font face="Courier">html</font><font face="Helvetica">label</font></font>'});
+
 
 $graph->create('png');
 

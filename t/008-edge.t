@@ -4,7 +4,7 @@ use strict;
 
 use GraphViz::Graph;
 
-use Test::More tests => 1;
+use Test::More tests => 3;
 use Test::Files;
 
 my $file_base_name = 'test-008';
@@ -37,9 +37,12 @@ $nd_three->label({html=>"<table>
 
 $nd_four->label({text=>'End'});
 
-$graph->edge($nd_one                  , $nd_two  ->port('port_f'));
-$graph->edge($nd_two  ->port('port_f'), $nd_three->port('port_l'));
-$graph->edge($nd_three->port('port_k'), $nd_four                 );
+my $edge_1 = $graph->edge($nd_one                  , $nd_two  ->port('port_f'));
+             $graph->edge($nd_two  ->port('port_f'), $nd_three->port('port_l'));
+             $graph->edge($nd_three->port('port_k'), $nd_four                 );
+
+isa_ok($edge_1, 'GraphViz::Graph::Edge');
+isa_ok($edge_1, 'GraphViz::Graph::Object');
 
 $graph->create('png');
 

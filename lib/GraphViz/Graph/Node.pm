@@ -4,6 +4,9 @@ use warnings;
 use strict;
 use 5.10.0; # state
 use Carp;
+
+use GraphViz::Graph::Object;
+our @ISA=qw(GraphViz::Graph::Object);
 #_}
 #_{ Version
 our $VERSION = 0.04;
@@ -25,8 +28,9 @@ sub new { #_{
  #_}
   my $class = shift;
 # my $opts  = shift;
-  my $self = {};
-
+#
+# my $self = {};
+  my $self = $class->SUPER::new();
 
 # croak 'Options expected'       unless defined $opts;
 # croak 'Options must be a HASH' unless ref $opts eq 'HASH';
@@ -37,7 +41,7 @@ sub new { #_{
   $self->{id} = sprintf('nd_%04d',  ++$id);
   $self->{shape} = 'none';
 
-  bless $self, $class;
+# bless $self, $class;
 
   $self->shape('none');
   return $self;
