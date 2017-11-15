@@ -33,4 +33,6 @@
 
        Derive Node, Edge and Graph from Object.
 
+       Adding https://metacpan.org/release/GraphViz2 to See Also (Bug ID 122741).
+
 
