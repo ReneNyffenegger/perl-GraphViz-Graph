@@ -50,6 +50,7 @@ sub new { #_{
 Initalize a GraphViz::Graph object.
 
 #_}
+=cut
 
   my $class          = shift;
   my $self           = {};
@@ -122,4 +123,3 @@ The source code is on L<github|https://github.com/ReneNyffenegger/perl-GraphViz-
 #_}
 
 'tq84'
-
