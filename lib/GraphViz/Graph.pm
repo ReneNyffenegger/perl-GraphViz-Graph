@@ -315,6 +315,15 @@ copy of the full license at: L<http://www.perlfoundation.org/artistic_license_2_
 =cut
 
 #_}
+#_{ See also
+
+=head1 See also
+
+    L<GraphiViz2|https://metacpan.org/release/GraphViz2>
+
+=cut
+
+#_}
 #_{ Testing
 
 =head1 Testing

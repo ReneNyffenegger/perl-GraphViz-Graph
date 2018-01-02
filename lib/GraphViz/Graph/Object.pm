@@ -50,7 +50,6 @@ sub new { #_{
 Initalize a GraphViz::Graph object.
 
 #_}
-=cut
 
   my $class          = shift;
   my $self           = {};
