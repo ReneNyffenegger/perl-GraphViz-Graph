@@ -111,6 +111,8 @@ Called by L<GraphViz::Graph>'s C<write_dot()>.
   if (exists $self->{label}) {
       $ret .= "    " . $self->{label}->dot_text();
   }
+  my $todo_attributes = $self->dot_text_attributes();
+  $ret .= $todo_attributes;
   $ret .= "  ];\n\n";
   return $ret;
 

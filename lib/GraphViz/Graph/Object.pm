@@ -49,6 +49,7 @@ sub new { #_{
 
 Initalize a GraphViz::Graph object.
 
+#_}
 =cut
 
   my $class          = shift;
@@ -89,7 +90,7 @@ Returns the dot-text that represents the attributes stored in C<$self>.
 
   for my $key (keys %{$self->{attributes}}) {
 
-    $attributes .= ' ' if $attributes;
+    $attributes .= "\n";# if $attributes;
     $attributes .= "$key = \"$self->{attributes}{$key}\"";
   }
 
