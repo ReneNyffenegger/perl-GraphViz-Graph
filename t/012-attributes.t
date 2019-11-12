@@ -4,6 +4,8 @@ use strict;
 
 use GraphViz::Graph;
 
+use Test::More tests => 1;
+
 my $file_base_name = 'test-012';
 my $dot_file_name  = "$file_base_name.dot";
 my $png_file_name  = "$file_base_name.png";
@@ -24,3 +26,5 @@ $e_ab->set_attribute('color'   , 'red');
 $e_ab->set_attribute('penwidth', '4');
 
 $graph->create('png');
+
+ok('ok for the time being');
