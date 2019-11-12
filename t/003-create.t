@@ -1,6 +1,8 @@
 #!/usr/bin/perl
 use warnings;
 use strict;
+use File::MMagic;
+
 
 use Test::More tests => 2;
 
@@ -15,8 +17,13 @@ $graph->create('png');
 
 ok(-e $png_file_name, "$png_file_name exists");
 
-my $file_type = readpipe("file $png_file_name");
-like ($file_type, qr/^test-003.png: PNG image data, /, "filetype is png");
+
+my $fileMagic = File::MMagic->new;
+my $fileType = $fileMagic->checktype_filename($png_file_name);
+ok ($fileType eq 'image/png', "filetype is image/png");
+
+# my $file_type = readpipe("file $png_file_name");
+# like ($file_type, qr/^test-003.png: PNG image data, /, "filetype is png");
 
 unlink $png_file_name;
 unlink $dot_file_name;
